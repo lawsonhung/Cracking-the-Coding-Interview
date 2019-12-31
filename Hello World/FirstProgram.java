@@ -25,7 +25,7 @@ class A {
       // Print out char_set[currentVal]
       System.out.println("char_set[currentVal]: " + char_set[currentVal]);
 
-      // See if char_set[currentVal] is true
+      // See if char_set[currentVal] is true or false
       if (char_set[currentVal]) {
         System.out.println("char_set[currentVal] is true: " + char_set[currentVal]);
         // Return false and break out of the loop
