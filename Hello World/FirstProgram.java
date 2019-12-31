@@ -25,6 +25,7 @@ class A {
       // Print out char_set[currentVal]
       System.out.println("char_set[currentVal]: " + char_set[currentVal]);
 
+      // ????? Why is if statement not being met when char_set[currentVal] is true?
       // See if char_set[currentVal] is true or false
       if (char_set[currentVal]) {
         System.out.println("char_set[currentVal] is true: " + char_set[currentVal]);
@@ -32,6 +33,7 @@ class A {
         return false;
       }
 
+      // ??????? Not sure why I have to reassign to true when it already is true above
       // Assign char_set[currentVal] to true
       char_set[currentVal] = true;
     }
