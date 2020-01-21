@@ -10,7 +10,7 @@ const allUniqueChars = (input) => {
 
   // O(n^2) approach, no additional data structures used
   // For each character, check remaining characters for duplicates
-  console.log("The current word is: " + input);
+  console.log("%c The current word is: " + input, "color: #FFA500");
 
   // NOTE: var VS let: var is scoped to the function body, while let is scoped to the immediate enclosing block.
   // thisVarCanBeAccessedOutsideOfForLoop is accessible here.
@@ -24,15 +24,15 @@ const allUniqueChars = (input) => {
       // Case sensitive
       // If there is a repeat character, return false
       if(input[i] === input[j]){
-        console.log("Oh no :( There are repeating characters in this word :( Breaking out of for loop now");
-        console.log("The FIRST repeating letter that was caught is: " + input[j]);
+        console.log("%c Oh no :( There are repeating characters in this word :( Breaking out of for loop now", "color: #F00");
+        console.log("%c The FIRST repeating letter that was caught is: " + input[j], "color: #F00");
         return false;
       }
     }
   }
 
   // Else, if there is no match, return true
-  console.log("All the characters in this word are unique. No repeat characters.");
+  console.log("%c YAY! All the characters in this word are unique. No repeat characters.", "background: #222; color: #0F0");
   return true;
 };
 
