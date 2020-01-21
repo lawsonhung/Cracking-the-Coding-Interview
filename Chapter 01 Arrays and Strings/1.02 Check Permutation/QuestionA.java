@@ -12,7 +12,7 @@ public class QuestionA {
     System.out.println("Question A");
 
     // Declares an array within an array, initializing it with the variable name pairs and assigning it the values below
-    String[][] pairs = {{"apple", "papel"}, {"carrot","tarroc"}, {"hello", "llloh"}, {"Hello", "Hello"}};
+    String[][] pairs = {{"apple", "papel"}, {"carrot", "tarroc"}, {"hello", "llloh"}, {"Hello", "Hello"}};
 
     for (String[] pair : pairs) {
       // Print out an empty line to separate each pair for readability
