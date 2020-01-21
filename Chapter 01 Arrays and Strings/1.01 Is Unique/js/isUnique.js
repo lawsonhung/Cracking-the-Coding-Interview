@@ -24,7 +24,7 @@ const allUniqueChars = (input) => {
       // Case sensitive
       // If there is a repeat character, return false
       if(input[i] === input[j]){
-        console.log("There are repeating characters in this word :( Breaking out of for loop now");
+        console.log("Oh no :( There are repeating characters in this word :( Breaking out of for loop now");
         console.log("The FIRST repeating letter that was caught is: " + input[j]);
         return false;
       }
