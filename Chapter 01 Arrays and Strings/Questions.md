@@ -7,5 +7,3 @@
 EXAMPLE
 Input: "Mr John Smith     ", 13
 Output: "Mr%20John%20Smith"
-
-Testing to see this commit go through
