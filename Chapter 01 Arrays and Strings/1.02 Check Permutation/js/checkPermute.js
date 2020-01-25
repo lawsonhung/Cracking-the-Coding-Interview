@@ -7,6 +7,7 @@ let checkPermute = (input1, input2) => {
   console.log("The second string is: " + input2)
 
   // If different lengths, return false
+  // Note: If false due to different lengths, also make sure to console log here as well
   if(input1.length !== input2.length){
     console.log("Are the two strings permutations of one another? ", input1.length === input2.length);
     console.log("Nah bruv");
