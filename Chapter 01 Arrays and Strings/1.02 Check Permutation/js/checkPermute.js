@@ -1,4 +1,4 @@
-console.log("You have connected to the matrix... JavaScript file succesfully linked");
+console.log("You have connected to the matrix. JavaScript file succesfully linked");
 // console.log(true);
 // console.log(false);
 
