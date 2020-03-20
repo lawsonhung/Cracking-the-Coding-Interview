@@ -25,5 +25,5 @@ homer.descendents.push(bart, lisa, maggie);
 // abe still has 1 descendent TreeNode instance object (homer) with 3 descendents under homer
 console.log("abe's descendent(s) in array form after adding descendents to homer: ", abe.descendents);
 // homer's descendents are an array of 3 TreeNode instance objects
-console.log("homer's descendent(s) after adding descdents to homer: ", homer.descendents);
+console.log("homer's descendent(s) after adding descendents to homer: ", homer.descendents);
 
