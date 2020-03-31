@@ -2,15 +2,15 @@
 import { Node } from './Node.js';
 
 // A Node has a value, a pointer to the previous node ( = prev), a pointer to the next node (= next)
-// class Node{
-//   constructor(value){
-//     // this refers to the current instance of Node
-//     // Used like: node1.value, node1.prev, node1.next
-//     this.value = value;
-//     this.prev = null;
-//     this.next = null;
-//   }
-// }
+class Node{
+  constructor(value){
+    // this refers to the current instance of Node
+    // Used like: node1.value, node1.prev, node1.next
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+}
 
 
 // A Doubly Linked List has a length, a beginning (= head), an end (= tail)
