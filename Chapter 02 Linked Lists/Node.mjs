@@ -1,7 +1,7 @@
 // Source: https://dev.to/miku86/javascript-data-structures-doubly-linked-list-intro-and-setup-275b
 
 // A Node has a value, a pointer to the previous node ( = prev), a pointer to the next node (= next)
-export default class Node{
+export class Node{
   // Syntax: new Node(value);
   constructor(value){
     // this refers to the current instance of Node
@@ -13,4 +13,5 @@ export default class Node{
   }
 }
 
-// export default Node;
+// With node, you don't need default
+// export default class Node;
