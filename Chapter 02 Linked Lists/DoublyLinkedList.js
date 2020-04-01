@@ -1,7 +1,7 @@
 // Source: https://dev.to/miku86/javascript-data-structures-doubly-linked-list-intro-and-setup-275b
 import { Node } from './Node.js';
 // In terminal, run with
-// $ node --experimental-modules DoublyLinkedList.mjs
+// $ node --experimental-modules DoublyLinkedList.js
 // This allows you to import modules in ES6 format/syntax
 
 // A Node has a value, a pointer to the previous node ( = prev), a pointer to the next node (= next)
