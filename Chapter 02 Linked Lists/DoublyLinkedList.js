@@ -88,6 +88,7 @@ class DoublyLinkedList{
   }
 }
 
+// Testing initializing new Node
 const newNode = new Node(1);
 console.log("newNode: ", newNode);
 // Node { value: 1, prev: null, next: null }
@@ -99,7 +100,7 @@ console.log("newNode.next: ", newNode.next);
 // null
 
 
-
+// Testing DoublyLinkedList.push();
 // Empty list
 const newDLL = new DoublyLinkedList();
 console.log("newDLL: ", newDLL);
@@ -138,4 +139,11 @@ console.log("newDLL after pushing newNode2: ", newDLL);
 //   }
 // }
 
+// Testing DoublyLinkedList.pop();
+console.log("\n Testing pop()");
+const newDLLPop = new DoublyLinkedList();
+newDLLPop.push("A");
+newDLLPop.push("B");
+newDLLPop.push("C");
+console.log("newDLLPop = ", newDLLPop);
 
