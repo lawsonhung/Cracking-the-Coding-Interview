@@ -13,5 +13,5 @@ export class Node{
   }
 }
 
-// With node, you don't need default
+// With node, you don't need `default`
 // export default class Node;
