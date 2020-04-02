@@ -58,25 +58,38 @@ class DoublyLinkedList{
    * @return {Node}
    */
   pop(){
-    // No node in the list, therefore return null
+    // No node in the list so it's empty, therefore return null
     // this.length = false if empty, so !this.length returns true
     if(!this.length){
       return null;
     } else {
-      /**
-       * Find the second to last node (it becomes the new tail):
-       * - Set the current head as currentNode. We always have to start from the List's head node.
-       * - Set the current head as secondToLastNode. We can't go back a node, therefore we have to save the second to last node
-       * - As long as the current node has a next node. So it is not the last node.
-       * - Then set the current node to the second to last node
-       * - Then set the current node's `next` as the current node
-       */
-      let currentNode = this.head;
-      let secondToLastNode = this.head;
+      // Save current tail to return to later
+      const nodeToRemove = this.tail;
+
+      if(this.length === 1){
+        // After removing the only node, there will be no head and tail
+        this.head = null;
+        this.tail = null;
+      } else {
+        // Set the node before the current tail as the new tail
+        this.tail = this.tail.prev;
+        // Remove the connection from the new tail to the old tail, after reassigning the new tail
+        this.tail.next = null;
+        // Remove the connection from the old tail to the next tail
+        nodeToRemove.prev = null;
+      }
+
+      // Decrement length by 1
+      this.length--;
+
+      // Return old tail
+      return nodeToRemove;
     }
   }
 }
 
+/////////////////////// Testing initializing new Node
+console.log("Testing creating new Node");
 const newNode = new Node(1);
 console.log("newNode: ", newNode);
 // Node { value: 1, prev: null, next: null }
@@ -89,6 +102,8 @@ console.log("newNode.next: ", newNode.next);
 
 
 
+////////////////// Testing DoublyLinkedList.push();
+console.log("\nTesting push");
 // Empty list
 const newDLL = new DoublyLinkedList();
 console.log("newDLL: ", newDLL);
@@ -123,6 +138,45 @@ console.log("newDLL after pushing newNode2: ", newDLL);
 //   tail: Node {
 //     value: 'new node 2',
 //     prev: Node { value: 'new node 1', prev: null, next: [Circular] },
+//     next: null
+//   }
+// }
+
+
+
+///////////////////// Testing DoublyLinkedList.pop();
+console.log("\nTesting pop()");
+const newDLLPop = new DoublyLinkedList();
+newDLLPop.push("A");
+newDLLPop.push("B");
+newDLLPop.push("C");
+console.log("newDLLPop after pushing: ", newDLLPop);
+// DoublyLinkedList {
+//   length: 3,
+//   head: Node {
+//     value: 'A',
+//     prev: null,
+//     next: Node { value: 'B', prev: [Circular], next: [Node] }
+//   },
+//   tail: Node {
+//     value: 'C',
+//     prev: Node { value: 'B', prev: [Node], next: [Circular] },
+//     next: null
+//   }
+// }
+console.log("This node is being popped out: ", newDLLPop.pop());
+// Node { value: 'C', prev: null, next: null }
+console.log("newDLLPop after popping: ", newDLLPop);
+// DoublyLinkedList {
+//   length: 2,
+//   head: Node {
+//     value: 'A',
+//     prev: null,
+//     next: Node { value: 'B', prev: [Circular], next: null }
+//   },
+//   tail: Node {
+//     value: 'B',
+//     prev: Node { value: 'A', prev: null, next: [Circular] },
 //     next: null
 //   }
 // }
