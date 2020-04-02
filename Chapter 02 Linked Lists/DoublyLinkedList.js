@@ -58,7 +58,22 @@ class DoublyLinkedList{
    * @return {Node}
    */
   pop(){
-
+    // No node in the list, therefore return null
+    // this.length = false if empty, so !this.length returns true
+    if(!this.length){
+      return null;
+    } else {
+      /**
+       * Find the second to last node (it becomes the new tail):
+       * - Set the current head as currentNode. We always have to start from the List's head node.
+       * - Set the current head as secondToLastNode. We can't go back a node, therefore we have to save the second to last node
+       * - As long as the current node has a next node. So it is not the last node.
+       * - Then set the current node to the second to last node
+       * - Then set the current node's `next` as the current node
+       */
+      let currentNode = this.head;
+      let secondToLastNode = this.head;
+    }
   }
 }
 
