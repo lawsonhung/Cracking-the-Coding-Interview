@@ -25,7 +25,8 @@ class DoublyLinkedList{
   }
 
   /**
-   * 
+   * Add node to end
+   * Return newly added node
    * @return {Node}
    */
   push(value){
@@ -55,6 +56,8 @@ class DoublyLinkedList{
   }
 
   /**
+   * Remove node from end
+   * Return removed node
    * @return {Node}
    */
   pop(){
@@ -86,6 +89,38 @@ class DoublyLinkedList{
       return nodeToRemove;
     }
   }
+
+  /**
+   * Add node to beginning
+   * Return newly added Node
+   * @returns {Node}
+   */
+  unshift(value){
+    // Create a new node
+    const newNode = new Node(value);
+
+    // If list is empty, set head and tail to new node
+    // this.length = 0 = false when empty, so !this.length would return true when empty
+    if (!this.length) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      // Set new node's next to current head
+      newNode.next = this.head;
+
+      // Set the current head's prev to new node
+      this.head.prev = newNode;
+
+      // Set list's head to new node
+      this.head = newNode;
+    }
+
+    // Increment length by 1
+    this.length++;
+
+    // return new node
+    return newNode;
+  }
 }
 
 /////////////////////// Testing initializing new Node
@@ -102,17 +137,17 @@ console.log("newNode.next: ", newNode.next);
 
 
 
-////////////////// Testing DoublyLinkedList.push();
+////////////////// Testing DoublyLinkedList.push()
 console.log("\nTesting push");
 // Empty list
-const newDLL = new DoublyLinkedList();
-console.log("newDLL: ", newDLL);
-// newDLL:  DoublyLinkedList { length: 0, head: null, tail: null }
+const pushDLL = new DoublyLinkedList();
+console.log("pushDLL: ", pushDLL);
+// pushDLL:  DoublyLinkedList { length: 0, head: null, tail: null }
 // Push first new node
-const newNode1 = newDLL.push("new node 1");
+const newNode1 = pushDLL.push("new node 1");
 console.log("Pushing new node and returning newly pushed node: ", newNode1);
 // Node { value: 'new node 1', prev: null, next: null }
-console.log("newDLL after pushing newNode1: ", newDLL);
+console.log("pushDLL after pushing newNode1: ", pushDLL);
 // DoublyLinkedList {
 //   length: 1,
 //   head: Node { value: 'new node 1', prev: null, next: null },
@@ -120,14 +155,14 @@ console.log("newDLL after pushing newNode1: ", newDLL);
 // }
 
 // Push second new node
-const newNode2 = newDLL.push("new node 2");
+const newNode2 = pushDLL.push("new node 2");
 console.log("Pushing new node and returning newly pushed node: ", newNode2);
 // Node {
 //   value: 'new node 2',
 //   prev: Node { value: 'new node 1', prev: null, next: [Circular] },
 //   next: null
 // }
-console.log("newDLL after pushing newNode2: ", newDLL);
+console.log("pushDLL after pushing newNode2: ", pushDLL);
 // DoublyLinkedList {
 //   length: 2,
 //   head: Node {
@@ -144,13 +179,13 @@ console.log("newDLL after pushing newNode2: ", newDLL);
 
 
 
-///////////////////// Testing DoublyLinkedList.pop();
+///////////////////// Testing DoublyLinkedList.pop()
 console.log("\nTesting pop()");
-const newDLLPop = new DoublyLinkedList();
-newDLLPop.push("A");
-newDLLPop.push("B");
-newDLLPop.push("C");
-console.log("newDLLPop after pushing: ", newDLLPop);
+const popDLL = new DoublyLinkedList();
+popDLL.push("A");
+popDLL.push("B");
+popDLL.push("C");
+console.log("popDLL after pushing: ", popDLL);
 // DoublyLinkedList {
 //   length: 3,
 //   head: Node {
@@ -164,9 +199,9 @@ console.log("newDLLPop after pushing: ", newDLLPop);
 //     next: null
 //   }
 // }
-console.log("This node is being popped out: ", newDLLPop.pop());
+console.log("This node is being popped out: ", popDLL.pop());
 // Node { value: 'C', prev: null, next: null }
-console.log("newDLLPop after popping: ", newDLLPop);
+console.log("popDLL after popping: ", popDLL);
 // DoublyLinkedList {
 //   length: 2,
 //   head: Node {
@@ -181,4 +216,22 @@ console.log("newDLLPop after popping: ", newDLLPop);
 //   }
 // }
 
+
+
+//////////////////////// Testing DoublyLinkedList.unshift()
+console.log("\nTesting unshift()")
+const unshiftDLL = new DoublyLinkedList();
+unshiftDLL.push("A");
+console.log("unshiftDLL after pushing: ", unshiftDLL);
+// DoublyLinkedList {
+//   length: 1,
+//   head: Node { value: 'A', prev: null, next: null },
+//   tail: Node { value: 'A', prev: null, next: null }
+// }
+console.log("Unshifting unshiftDLL: ", unshiftDLL.unshift("0"));
+// Node {
+//   value: '0',
+//   prev: null,
+//   next: Node { value: 'A', prev: [Circular], next: null }
+// }
 
