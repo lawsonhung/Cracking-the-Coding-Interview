@@ -4,7 +4,7 @@ import { Node } from './Node.js';
 // $ node --experimental-modules DoublyLinkedList.js
 // This allows you to import modules in ES6 format/syntax
 
-// A Node has a value, a pointer to the previous node ( = prev), a pointer to the next node (= next)
+// A Node has a value, a pointer to the previous node (= prev), a pointer to the next node (= next)
 // class Node{
 //   constructor(value){
 //     // this refers to the current instance of Node
@@ -52,6 +52,13 @@ class DoublyLinkedList{
 
     // Return new node
     return newNode;
+  }
+
+  /**
+   * @return {Node}
+   */
+  pop(){
+
   }
 }
 
