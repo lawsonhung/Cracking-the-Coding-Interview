@@ -3,6 +3,14 @@ import { Node } from './Node.js';
 // In terminal, run with
 // $ node --experimental-modules DoublyLinkedList.js
 // This allows you to import modules in ES6 format/syntax
+// Looks for the closest parent `package.json` file
+// Make sure the closest package.json file contains the key-value pair: 
+ /**
+ * {
+ *   "type": "module"
+ * }
+ */
+// Can be anywhere in the package.json file
 
 // A Node has a value, a pointer to the previous node (= prev), a pointer to the next node (= next)
 // class Node{
@@ -121,6 +129,44 @@ class DoublyLinkedList{
     // return new node
     return newNode;
   }
+
+  /**
+   * Remove Node from beginning
+   * Return removed node
+   * @return {Node}
+   */
+  shift(){
+    // If the list is empty, return null. We can't remove data from an empty list
+    // this.length = 0 = false if empty, so !this.length returns true
+    if (!this.length) {
+      return null;
+    }
+    
+    // Set head as nodeToRemove
+    const nodeToRemove = this.head;
+
+    // After removing the only element, the list will be empty, so head and tail will be null
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      // The node after nodeToRemove becomes the new head
+      this.head = nodeToRemove.next;
+
+      // Remove both connections from the new head and the old head (nodeToRemove)
+      this.head.prev = null;
+      nodeToRemove.next = null;
+    }
+
+    // Decrement length by 1
+    this.length--;
+
+    // Return nodeToRemove
+    return nodeToRemove;
+  }
+
+
+
 }
 
 /////////////////////// Testing initializing new Node
@@ -236,6 +282,37 @@ console.log("Unshifting unshiftDLL: ", unshiftDLL.unshift("0"));
 //   value: '0',
 //   prev: null,
 //   next: Node { value: 'A', prev: [Circular], next: null }
+// }
+
+
+
+///////////////////////////// Testing DoublyLinkedList.shift()
+console.log("------------------------------------------------");
+console.log("Testing shift()");
+const shiftDLL = new DoublyLinkedList();
+shiftDLL.push("A");
+shiftDLL.push("B");
+console.log("shiftDLL after pushing: ", shiftDLL);
+// DoublyLinkedList {
+//   length: 2,
+//   head: Node {
+//     value: 'A',
+//     prev: null,
+//     next: Node { value: 'B', prev: [Circular], next: null }
+//   },
+//   tail: Node {
+//     value: 'B',
+//     prev: Node { value: 'A', prev: null, next: [Circular] },
+//     next: null
+//   }
+// }
+console.log("Removed node from shifting shiftDLL: ", shiftDLL.shift());
+// Node { value: 'A', prev: null, next: null }
+console.log("shiftDLL after shifting: ", shiftDLL);
+// DoublyLinkedList {
+//   length: 1,
+//   head: Node { value: 'B', prev: null, next: null },
+//   tail: Node { value: 'B', prev: null, next: null }
 // }
 
 
