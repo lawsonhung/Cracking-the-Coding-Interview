@@ -58,21 +58,32 @@ class DoublyLinkedList{
    * @return {Node}
    */
   pop(){
-    // No node in the list, therefore return null
+    // No node in the list so it's empty, therefore return null
     // this.length = false if empty, so !this.length returns true
     if(!this.length){
       return null;
     } else {
-      /**
-       * Find the second to last node (it becomes the new tail):
-       * - Set the current head as currentNode. We always have to start from the List's head node.
-       * - Set the current head as secondToLastNode. We can't go back a node, therefore we have to save the second to last node
-       * - As long as the current node has a next node. So it is not the last node.
-       * - Then set the current node to the second to last node
-       * - Then set the current node's `next` as the current node
-       */
-      let currentNode = this.head;
-      let secondToLastNode = this.head;
+      // Save current tail to return to later
+      const nodeToRemove = this.tail;
+
+      if(this.length === 1){
+        // After removing the only node, there will be no head and tail
+        this.head = null;
+        this.tail = null;
+      } else {
+        // Set the node before the current tail as the new tail
+        this.tail = this.tail.prev;
+        // Remove the connection from the new tail to the old tail, after reassigning the new tail
+        this.tail.next = null;
+        // Remove the connection from the old tail to the next tail
+        nodeToRemove.prev = null;
+      }
+
+      // Decrement length by 1
+      this.length--;
+
+      // Return old tail
+      return nodeToRemove;
     }
   }
 }
