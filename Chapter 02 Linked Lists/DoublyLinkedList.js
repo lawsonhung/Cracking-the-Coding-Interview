@@ -88,7 +88,8 @@ class DoublyLinkedList{
   }
 }
 
-// Testing initializing new Node
+/////////////////////// Testing initializing new Node
+console.log("Testing creating new Node");
 const newNode = new Node(1);
 console.log("newNode: ", newNode);
 // Node { value: 1, prev: null, next: null }
@@ -100,7 +101,9 @@ console.log("newNode.next: ", newNode.next);
 // null
 
 
-// Testing DoublyLinkedList.push();
+
+////////////////// Testing DoublyLinkedList.push();
+console.log("\nTesting push");
 // Empty list
 const newDLL = new DoublyLinkedList();
 console.log("newDLL: ", newDLL);
@@ -139,11 +142,43 @@ console.log("newDLL after pushing newNode2: ", newDLL);
 //   }
 // }
 
-// Testing DoublyLinkedList.pop();
-console.log("\n Testing pop()");
+
+
+///////////////////// Testing DoublyLinkedList.pop();
+console.log("\nTesting pop()");
 const newDLLPop = new DoublyLinkedList();
 newDLLPop.push("A");
 newDLLPop.push("B");
 newDLLPop.push("C");
-console.log("newDLLPop = ", newDLLPop);
+console.log("newDLLPop after pushing: ", newDLLPop);
+// DoublyLinkedList {
+//   length: 3,
+//   head: Node {
+//     value: 'A',
+//     prev: null,
+//     next: Node { value: 'B', prev: [Circular], next: [Node] }
+//   },
+//   tail: Node {
+//     value: 'C',
+//     prev: Node { value: 'B', prev: [Node], next: [Circular] },
+//     next: null
+//   }
+// }
+console.log("This node is being popped out: ", newDLLPop.pop());
+// Node { value: 'C', prev: null, next: null }
+console.log("newDLLPop after popping: ", newDLLPop);
+// DoublyLinkedList {
+//   length: 2,
+//   head: Node {
+//     value: 'A',
+//     prev: null,
+//     next: Node { value: 'B', prev: [Circular], next: null }
+//   },
+//   tail: Node {
+//     value: 'B',
+//     prev: Node { value: 'A', prev: null, next: [Circular] },
+//     next: null
+//   }
+// }
+
 
