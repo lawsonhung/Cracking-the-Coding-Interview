@@ -138,7 +138,8 @@ console.log("newNode.next: ", newNode.next);
 
 
 ////////////////// Testing DoublyLinkedList.push()
-console.log("\nTesting push");
+console.log("-------------------------------------------");
+console.log("Testing push");
 // Empty list
 const pushDLL = new DoublyLinkedList();
 console.log("pushDLL: ", pushDLL);
@@ -180,7 +181,8 @@ console.log("pushDLL after pushing newNode2: ", pushDLL);
 
 
 ///////////////////// Testing DoublyLinkedList.pop()
-console.log("\nTesting pop()");
+console.log("---------------------------------------");
+console.log("Testing pop()");
 const popDLL = new DoublyLinkedList();
 popDLL.push("A");
 popDLL.push("B");
@@ -219,7 +221,8 @@ console.log("popDLL after popping: ", popDLL);
 
 
 //////////////////////// Testing DoublyLinkedList.unshift()
-console.log("\nTesting unshift()")
+console.log("------------------------------------------------");
+console.log("Testing unshift()");
 const unshiftDLL = new DoublyLinkedList();
 unshiftDLL.push("A");
 console.log("unshiftDLL after pushing: ", unshiftDLL);
@@ -234,4 +237,6 @@ console.log("Unshifting unshiftDLL: ", unshiftDLL.unshift("0"));
 //   prev: null,
 //   next: Node { value: 'A', prev: [Circular], next: null }
 // }
+
+
 
