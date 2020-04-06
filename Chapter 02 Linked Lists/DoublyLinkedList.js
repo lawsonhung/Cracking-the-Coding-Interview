@@ -208,6 +208,22 @@ class DoublyLinkedList{
     }
   }
 
+  set(index, value) {
+    // Find the node to change
+    const nodeToChange = this.get(index);
+
+    // If the node exists
+    if (nodeToChange) {
+      // Update the value of the node
+      nodeToChange.value = value;
+      // Return the updated node
+      return nodeToChange;
+    } else {
+      // If we can't find the node: return null
+      return null;
+    }
+  }
+
 }
 
 /////////////////////// Testing initializing new Node
