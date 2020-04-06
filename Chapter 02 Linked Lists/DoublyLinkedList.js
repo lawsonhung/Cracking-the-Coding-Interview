@@ -229,25 +229,27 @@ class DoublyLinkedList{
    * @return {Node}
    */
   insert(index, value){
-    // If index is less than 0 or if index is greater than the list's length
+    // If index is less than 0 or if index is greater than the list's length, return null
     if (index < 0 || index > this.length){
       return null;
-    // If index is 0
+    // If index equals 0, use this.unshift(value)
     } else if (index === 0){
       return this.unshift(value);
-    // If index equals length
+    // If index equals length, use this.push(value)
     } else if (index === this.length){
       return this.push(value);
     } else {
       // Create a new node
-      const nodeToInsert = newNode(value);
+      const nodeToInsert = new Node(value);
 
       // Find the node that is currently before the desired place and connect it to the new node
       const prev = this.get(index - 1);
       nodeToInsert.prev = prev;
+      prev.next = nodeToInsert;
 
       // Find the node that is currently at the desired place and connect it to he new node
       const next = this.get(index);
+      next.prev = nodeToInsert;
       nodeToInsert.next = next;
 
       // Increment the list's length by 1
@@ -468,7 +470,23 @@ console.log("setDLL.set(1, 'too high'): ", setDLL.set(1, 'too high'));
 console.log("---------------------------------------------");
 console.log("Testing insert(index, value)");
 const insertDLL = new DoublyLinkedList();
-console.log("insertDLL.insert(-1, 'too low')", insertDLL.insert(-1, "too low"));
+console.log("insertDLL.insert(-1, 'too low'): ", insertDLL.insert(-1, "too low"));
 // null
+console.log("insertDLL.insert(0, 'at 0'): ", insertDLL.insert(0, 'at 0'));
+// Node { value: 'at 0', prev: null, next: null }
+console.log("insertDLL.insert(1, 'at 1'): ", insertDLL.insert(1, 'at 1'));
+// Node {
+//   value: 'at 1',
+//   prev: Node { value: 'at 0', prev: null, next: [Circular] },
+//   next: null
+// }
+console.log("insertDLL.insert(1, 'new at 1'): ", insertDLL.insert(1, 'new at 1'));
+// insertDLL.insert(1, 'new at 1'):  Node {
+//   value: 'new at 1',
+//   prev: Node { value: 'at 0', prev: null, next: [Circular] },
+//   next: Node { value: 'at 1', prev: [Circular], next: null }
+// }
+console.log("insertDLL after testing insertDLL.insert(index, value)", insertDLL);
+
 
 
