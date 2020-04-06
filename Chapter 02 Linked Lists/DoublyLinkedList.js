@@ -165,7 +165,48 @@ class DoublyLinkedList{
     return nodeToRemove;
   }
 
+  /**
+   * Get node by index
+   * @return {Node}
+   */
+  get(index) {
+    // If list is empty, or index is less than 0, or index is greater than or equal to list length, return null
+    if (!this.length || index < 0 || index >= this.length) {
+      return null;
+    } else {
+      let currentNode;
 
+      // If the desired node is in the bottom of the list
+      if (index < this.length / 2) {
+        // Add counter, starting from 0 and count upwards in the loop
+        let counter = 0;
+
+        // Start from head node
+        currentNode = this.head;
+
+        // Go to the next node until we find the desired node
+        while (counter < index) {
+          currentNode = currentNode.next;
+          counter++;
+        }
+      } else {
+        // Add counter, starting from the top and counting downwards in the loop
+        let counter = this.length - 1;
+
+        // Start from the tail node
+        currentNode = this.tail;
+
+        // Go the the previous node until we find the desired node
+        while (counter > index) {
+          currentNode = currentNode.prev;
+          counter--;
+        }
+      }
+    }
+
+    // Return node
+    return currentNode;
+  }
 
 }
 
