@@ -165,7 +165,48 @@ class DoublyLinkedList{
     return nodeToRemove;
   }
 
+  /**
+   * Get node by index
+   * @return {Node}
+   */
+  get(index) {
+    // If list is empty, or index is less than 0, or index is greater than or equal to list length, return null
+    if (!this.length || index < 0 || index >= this.length) {
+      return null;
+    } else {
+      let currentNode;
 
+      // If the desired node is in the bottom of the list
+      if (index < this.length / 2) {
+        // Add counter, starting from 0 and count upwards in the loop
+        let counter = 0;
+
+        // Start from head node
+        currentNode = this.head;
+
+        // Go to the next node until we find the desired node
+        while (counter < index) {
+          currentNode = currentNode.next;
+          counter++;
+        }
+      } else {
+        // Add counter, starting from the top and counting downwards in the loop
+        let counter = this.length - 1;
+
+        // Start from the tail node
+        currentNode = this.tail;
+
+        // Go the the previous node until we find the desired node
+        while (counter > index) {
+          currentNode = currentNode.prev;
+          counter--;
+        }
+      }
+
+      // Return node
+      return currentNode;
+    }
+  }
 
 }
 
@@ -315,5 +356,49 @@ console.log("shiftDLL after shifting: ", shiftDLL);
 //   tail: Node { value: 'B', prev: null, next: null }
 // }
 
+
+
+/////////////////////////// Testing DoublyLinkedList.get()
+console.log("-----------------------------------------------");
+console.log("Testing get()");
+const getDLL = new DoublyLinkedList();
+getDLL.push("A");
+getDLL.push("B");
+getDLL.push("C");
+
+console.log("getDLL.get(-1): ", getDLL.get(-1));
+// null
+
+console.log("getDLL.get(0): ", getDLL.get(0));
+// Node {
+//   value: 'A',
+//   prev: null,
+//   next: Node {
+//     value: 'B',
+//     prev: [Circular],
+//     next: Node { value: 'C', prev: [Circular], next: null }
+//   }
+// }
+
+console.log("getDLL.get(1): ", getDLL.get(1));
+// Node {
+//   value: 'B',
+//   prev: Node { value: 'A', prev: null, next: [Circular] },
+//   next: Node { value: 'C', prev: [Circular], next: null }
+// }
+
+console.log("getDLL.get(2): ", getDLL.get(2));
+// Node {
+//   value: 'C',
+//   prev: Node {
+//     value: 'B',
+//     prev: Node { value: 'A', prev: null, next: [Circular] },
+//     next: [Circular]
+//   },
+//   next: null
+// }
+
+console.log("getDLL.get(3): ", getDLL.get(3));
+// null
 
 
