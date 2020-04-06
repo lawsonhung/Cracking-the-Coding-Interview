@@ -376,7 +376,7 @@ console.log("shiftDLL after shifting: ", shiftDLL);
 
 /////////////////////////// Testing DoublyLinkedList.get()
 console.log("-----------------------------------------------");
-console.log("Testing get()");
+console.log("Testing get(index)");
 const getDLL = new DoublyLinkedList();
 getDLL.push("A");
 getDLL.push("B");
@@ -415,6 +415,19 @@ console.log("getDLL.get(2): ", getDLL.get(2));
 // }
 
 console.log("getDLL.get(3): ", getDLL.get(3));
+// null
+
+//////////////////////// Testing DoublyLinkedList.set(index, value)
+console.log("--------------------------------------");
+console.log("Testing set(index, value)");
+const setDLL = new DoublyLinkedList();
+setDLL.push("A");
+console.log("setDLL after pushing: ", setDLL);
+console.log("setDLL.set(-1, 'too low'): ", setDLL.set(-1, "too low"));
+// null
+console.log("setDLL.set(0, 'Updated A')", setDLL.set(0, "Updated A"));
+// Node { value: 'Updated A', prev: null, next: null }
+console.log("setDLL.set(1, 'too high'): ", setDLL.set(1, 'too high'));
 // null
 
 
