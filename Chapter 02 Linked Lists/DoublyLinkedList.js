@@ -202,10 +202,10 @@ class DoublyLinkedList{
           counter--;
         }
       }
-    }
 
-    // Return node
-    return currentNode;
+      // Return node
+      return currentNode;
+    }
   }
 
 }
@@ -356,5 +356,49 @@ console.log("shiftDLL after shifting: ", shiftDLL);
 //   tail: Node { value: 'B', prev: null, next: null }
 // }
 
+
+
+/////////////////////////// Testing DoublyLinkedList.get()
+console.log("-----------------------------------------------");
+console.log("Testing get()");
+const getDLL = new DoublyLinkedList();
+getDLL.push("A");
+getDLL.push("B");
+getDLL.push("C");
+
+console.log("getDLL.get(-1): ", getDLL.get(-1));
+// null
+
+console.log("getDLL.get(0): ", getDLL.get(0));
+// Node {
+//   value: 'A',
+//   prev: null,
+//   next: Node {
+//     value: 'B',
+//     prev: [Circular],
+//     next: Node { value: 'C', prev: [Circular], next: null }
+//   }
+// }
+
+console.log("getDLL.get(1): ", getDLL.get(1));
+// Node {
+//   value: 'B',
+//   prev: Node { value: 'A', prev: null, next: [Circular] },
+//   next: Node { value: 'C', prev: [Circular], next: null }
+// }
+
+console.log("getDLL.get(2): ", getDLL.get(2));
+// Node {
+//   value: 'C',
+//   prev: Node {
+//     value: 'B',
+//     prev: Node { value: 'A', prev: null, next: [Circular] },
+//     next: [Circular]
+//   },
+//   next: null
+// }
+
+console.log("getDLL.get(3): ", getDLL.get(3));
+// null
 
 
