@@ -224,6 +224,40 @@ class DoublyLinkedList{
     }
   }
 
+  /**
+   * Implementing splice, inserting a node at a given index
+   * @return {Node}
+   */
+  insert(index, value){
+    // If index is less than 0 or if index is greater than the list's length
+    if (index < 0 || index > this.length){
+      return null;
+    // If index is 0
+    } else if (index === 0){
+      return this.unshift(value);
+    // If index equals length
+    } else if (index === this.length){
+      return this.push(value);
+    } else {
+      // Create a new node
+      const nodeToInsert = newNode(value);
+
+      // Find the node that is currently before the desired place and connect it to the new node
+      const prev = this.get(index - 1);
+      nodeToInsert.prev = prev;
+
+      // Find the node that is currently at the desired place and connect it to he new node
+      const next = this.get(index);
+      nodeToInsert.next = next;
+
+      // Increment the list's length by 1
+      this.length++;
+
+      // Return the new node
+      return nodeToInsert;
+    }
+  }
+
 }
 
 /////////////////////// Testing initializing new Node
@@ -428,6 +462,13 @@ console.log("setDLL.set(-1, 'too low'): ", setDLL.set(-1, "too low"));
 console.log("setDLL.set(0, 'Updated A')", setDLL.set(0, "Updated A"));
 // Node { value: 'Updated A', prev: null, next: null }
 console.log("setDLL.set(1, 'too high'): ", setDLL.set(1, 'too high'));
+// null
+
+///////////////////////// Testing DoublyLinkedList.insert(index, value)
+console.log("---------------------------------------------");
+console.log("Testing insert(index, value)");
+const insertDLL = new DoublyLinkedList();
+console.log("insertDLL.insert(-1, 'too low')", insertDLL.insert(-1, "too low"));
 // null
 
 
