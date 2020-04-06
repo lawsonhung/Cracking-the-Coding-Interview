@@ -208,6 +208,58 @@ class DoublyLinkedList{
     }
   }
 
+  set(index, value) {
+    // Find the node to change
+    const nodeToChange = this.get(index);
+
+    // If the node exists
+    if (nodeToChange) {
+      // Update the value of the node
+      nodeToChange.value = value;
+      // Return the updated node
+      return nodeToChange;
+    } else {
+      // If we can't find the node: return null
+      return null;
+    }
+  }
+
+  /**
+   * Implementing splice, inserting a node at a given index
+   * @return {Node}
+   */
+  insert(index, value){
+    // If index is less than 0 or if index is greater than the list's length, return null
+    if (index < 0 || index > this.length){
+      return null;
+    // If index equals 0, use this.unshift(value)
+    } else if (index === 0){
+      return this.unshift(value);
+    // If index equals length, use this.push(value)
+    } else if (index === this.length){
+      return this.push(value);
+    } else {
+      // Create a new node
+      const nodeToInsert = new Node(value);
+
+      // Find the node that is currently before the desired place and connect it to the new node
+      const prev = this.get(index - 1);
+      nodeToInsert.prev = prev;
+      prev.next = nodeToInsert;
+
+      // Find the node that is currently at the desired place and connect it to he new node
+      const next = this.get(index);
+      next.prev = nodeToInsert;
+      nodeToInsert.next = next;
+
+      // Increment the list's length by 1
+      this.length++;
+
+      // Return the new node
+      return nodeToInsert;
+    }
+  }
+
 }
 
 /////////////////////// Testing initializing new Node
@@ -360,7 +412,7 @@ console.log("shiftDLL after shifting: ", shiftDLL);
 
 /////////////////////////// Testing DoublyLinkedList.get()
 console.log("-----------------------------------------------");
-console.log("Testing get()");
+console.log("Testing get(index)");
 const getDLL = new DoublyLinkedList();
 getDLL.push("A");
 getDLL.push("B");
@@ -400,5 +452,41 @@ console.log("getDLL.get(2): ", getDLL.get(2));
 
 console.log("getDLL.get(3): ", getDLL.get(3));
 // null
+
+//////////////////////// Testing DoublyLinkedList.set(index, value)
+console.log("--------------------------------------");
+console.log("Testing set(index, value)");
+const setDLL = new DoublyLinkedList();
+setDLL.push("A");
+console.log("setDLL after pushing: ", setDLL);
+console.log("setDLL.set(-1, 'too low'): ", setDLL.set(-1, "too low"));
+// null
+console.log("setDLL.set(0, 'Updated A')", setDLL.set(0, "Updated A"));
+// Node { value: 'Updated A', prev: null, next: null }
+console.log("setDLL.set(1, 'too high'): ", setDLL.set(1, 'too high'));
+// null
+
+///////////////////////// Testing DoublyLinkedList.insert(index, value)
+console.log("---------------------------------------------");
+console.log("Testing insert(index, value)");
+const insertDLL = new DoublyLinkedList();
+console.log("insertDLL.insert(-1, 'too low'): ", insertDLL.insert(-1, "too low"));
+// null
+console.log("insertDLL.insert(0, 'at 0'): ", insertDLL.insert(0, 'at 0'));
+// Node { value: 'at 0', prev: null, next: null }
+console.log("insertDLL.insert(1, 'at 1'): ", insertDLL.insert(1, 'at 1'));
+// Node {
+//   value: 'at 1',
+//   prev: Node { value: 'at 0', prev: null, next: [Circular] },
+//   next: null
+// }
+console.log("insertDLL.insert(1, 'new at 1'): ", insertDLL.insert(1, 'new at 1'));
+// insertDLL.insert(1, 'new at 1'):  Node {
+//   value: 'new at 1',
+//   prev: Node { value: 'at 0', prev: null, next: [Circular] },
+//   next: Node { value: 'at 1', prev: [Circular], next: null }
+// }
+console.log("insertDLL after testing insertDLL.insert(index, value)", insertDLL);
+
 
 
