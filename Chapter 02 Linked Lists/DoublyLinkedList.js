@@ -276,9 +276,9 @@ class DoublyLinkedList{
       return this.pop();
     } else {
       // Get the node we want to remove, the node before it and the node after it
-      const nodeToRemove = get(index);
-      const prevNode = get(index - 1);
-      const nextNode = get(index + 1);
+      const nodeToRemove = this.get(index);
+      const prevNode = this.get(index - 1);
+      const nextNode = this.get(index + 1);
 
       // Remove the connections from the node to other nodes
       nodeToRemove.next = null;
@@ -537,5 +537,16 @@ removeDLL.push("B");
 removeDLL.push("C");
 console.log("removeDLL.remove(-1): ", removeDLL.remove(-1));
 // null
-
+console.log("removeDLL.remove(5): ", removeDLL.remove(5));
+// null
+console.log("removeDLL.remove(0): ", removeDLL.remove(0));
+// Node { value: 'A', prev: null, next: null }
+console.log("removeDLL.remove(1): ", removeDLL.remove(1));
+// Node { value: 'C', prev: null, next: null }
+console.log("removeDLL after removing: ", removeDLL);
+// DoublyLinkedList {
+//   length: 1,
+//   head: Node { value: 'B', prev: null, next: null },
+//   tail: Node { value: 'B', prev: null, next: null }
+// }
 
