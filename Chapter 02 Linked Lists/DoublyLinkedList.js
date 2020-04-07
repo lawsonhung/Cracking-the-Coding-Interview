@@ -260,6 +260,44 @@ class DoublyLinkedList{
     }
   }
 
+  /**
+   * Removes a node at index
+   * @return {Node}
+   */
+  remove(index){
+    // If list is empty, index is less than 0, greater than or equal to the list's length, return null
+    if (!this.length || index < 0 || index >= this.length){
+      return null;
+      // If index equals 0, we want to remove the first node with shift()
+    } else if (index === 0){
+      return this.shift();
+      // If we want to remove the last node, use pop()
+    } else if (index === this.length - 1){
+      return this.pop();
+    } else {
+      // Get the node we want to remove, the node before it and the node after it
+      const nodeToRemove = this.get(index);
+      const prevNode = this.get(index - 1);
+      const nextNode = this.get(index + 1);
+
+      // Remove the connections from the node to other nodes
+      nodeToRemove.next = null;
+      nodeToRemove.prev = null;
+
+      // Update the connections from the node before the node to remove
+      prevNode.next = nextNode;
+
+      // Update the connections from the node after the node to remove
+      nextNode.prev = prevNode;
+
+      // Decrement length by 1
+      this.length--;
+      
+      // Return node
+      return nodeToRemove;
+    }
+  }
+
 }
 
 /////////////////////// Testing initializing new Node
@@ -489,4 +527,26 @@ console.log("insertDLL.insert(1, 'new at 1'): ", insertDLL.insert(1, 'new at 1')
 console.log("insertDLL after testing insertDLL.insert(index, value)", insertDLL);
 
 
+
+//////////////////////////////// Testing DoublyLinkedList.remove(index)
+console.log("-----------------------------------");
+console.log("Testing DoublyLinkedList.remove(index)");
+const removeDLL = new DoublyLinkedList();
+removeDLL.push("A");
+removeDLL.push("B");
+removeDLL.push("C");
+console.log("removeDLL.remove(-1): ", removeDLL.remove(-1));
+// null
+console.log("removeDLL.remove(5): ", removeDLL.remove(5));
+// null
+console.log("removeDLL.remove(0): ", removeDLL.remove(0));
+// Node { value: 'A', prev: null, next: null }
+console.log("removeDLL.remove(1): ", removeDLL.remove(1));
+// Node { value: 'C', prev: null, next: null }
+console.log("removeDLL after removing: ", removeDLL);
+// DoublyLinkedList {
+//   length: 1,
+//   head: Node { value: 'B', prev: null, next: null },
+//   tail: Node { value: 'B', prev: null, next: null }
+// }
 
