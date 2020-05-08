@@ -1,3 +1,5 @@
+// Source: https://dev.to/miku86/javascript-data-structures-hash-table-intro-3nce
+
 // In terminal, run with
 // $ node --experimental-modules HashTable.js
 // This allows you to import modules in ES6 format/syntax
