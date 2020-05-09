@@ -38,6 +38,28 @@ class HashTable {
 
     this.size++;
   }
+
+  // Get data given a key
+  get = key => {
+    const hash = this.hash(key);
+
+    if (this.data[hash]) {
+      // for (const element of this.data[hash]) {
+      //   if (element[0] === key) {
+      //     return element;
+      //   }
+      // }
+
+      let elementFound = null;
+      this.data[hash].forEach(element => {
+        if (element[0] === key) {
+          elementFound = element;
+        }
+      })
+      return elementFound;
+    } else
+    return null;
+  }
 }
 
 //  console.log("hash('name): ", hash('name'));
@@ -55,3 +77,14 @@ console.log(newHashTable.data);
 
 newHashTable.set("age", 33);
 console.log(newHashTable.data);
+
+console.log(newHashTable.get("name"));
+// [ 'name', 'miku86' ]
+console.log(newHashTable.get("mean"));
+// [ 'mean', false ]
+console.log(newHashTable.get("age"));
+// [ 'age', 33 ]
+console.log(newHashTable.get("nothing to see"));
+// null
+console.log(newHashTable.get("naem"));
+// null
