@@ -38,6 +38,78 @@ class HashTable {
 
     this.size++;
   }
+
+  // Get data given a key
+  get = key => {
+    const hash = this.hash(key);
+
+    if (this.data[hash]) {
+      // for (const element of this.data[hash]) {
+      //   if (element[0] === key) {
+      //     return element;
+      //   }
+      // }
+
+      let elementFound = null;
+      this.data[hash].forEach(element => {
+        if (element[0] === key) {
+          elementFound = element;
+        }
+      })
+      return elementFound;
+    } else
+    return null;
+  }
+
+  keys = () => {
+    const keys = [];
+
+    this.data.forEach(bucket => {
+      if (bucket) {
+        bucket.forEach(item => {
+          keys.push(item[0]);
+        })
+      }
+    })
+
+    // for (const bucket of this.data) {
+    //   if (bucket) {
+    //     for (const item of bucket) {
+    //       keys.push(item[0]);
+    //     }
+    //   }
+    // }
+
+    return keys;
+  }
+
+  values = () => {
+    const values = [];
+
+    this.data.forEach(bucket => {
+      if (bucket) {
+        bucket.forEach(item => {
+          values.push(item[1]);
+        })
+      }
+    })
+
+    return values;
+  }
+
+  entries = () => {
+    const entries = [];
+
+    this.data.forEach(bucket => {
+      if (bucket) {
+        bucket.forEach(item => {
+          entries.push(item);
+        })
+      }
+    })
+
+    return entries;
+  }
 }
 
 //  console.log("hash('name): ", hash('name'));
@@ -47,11 +119,35 @@ const newHashTable = new HashTable();
 console.log("newHashTable: ", newHashTable);
 // console.log("newHashTable.hash('name'): ", newHashTable.hash('name'));
 
+console.log("\nTesting set(key, value)");
 newHashTable.set("name", "miku86");
 console.log(newHashTable.data);
-
 newHashTable.set("mean", false);
 console.log(newHashTable.data);
-
 newHashTable.set("age", 33);
 console.log(newHashTable.data);
+
+console.log("\nTesting get(key)");
+console.log(newHashTable.get("name"));
+// [ 'name', 'miku86' ]
+console.log(newHashTable.get("mean"));
+// [ 'mean', false ]
+console.log(newHashTable.get("age"));
+// [ 'age', 33 ]
+console.log(newHashTable.get("nothing to see"));
+// null
+console.log(newHashTable.get("naem"));
+// null
+
+console.log("\nTesting keys()");
+console.log(newHashTable.keys());
+// [ 'age', 'name', 'mean' ]
+
+console.log("\nTesting values()");
+console.log(newHashTable.values());
+// [ 33, 'miku86', false ]
+
+console.log("\nTesting entries()");
+console.log(newHashTable.entries());
+// [['age', 33], ['name', 'miku86'], ['mean', false]]
+
